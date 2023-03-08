@@ -1,0 +1,23 @@
+.podcastContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    margin: 20px;
+}
+
+.numItems {
+    background-color: lightblue;
+    margin-right: 10px;
+    padding: 1px 6px;
+    border-radius: 3px;
+}
+
+.numItems.green {
+    background-color: lightgreen;
+}
