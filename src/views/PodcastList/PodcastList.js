@@ -1,34 +1,49 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ReactReduxContext } from 'react-redux'
+import NavBar from '../../components/NavBar/NavBar';
 import PodcasItem from '../../components/PodcastItem/PodcasItem';
-import { result } from "../../app/mock";
+import usePodcast from '../../app/hooks/usePodcast';
 import "./PodcastList.css";
 
 const PodcastList = () => {
-    const [filter, setFilter] = useState();
-    const [items, setitems] = useState(result.feed.entry);
+    const [filter, setFilter] = useState([]);
+    const [items, setitems] = useState([]);
+    const [itemsFiltered, setitemsFiltered] = useState([]);
+    const { data, loading, error } = usePodcast();
 
-    const { store } = useContext(ReactReduxContext);
+    // const { store } = useContext(ReactReduxContext);
 
-    // console.log(store.getState().counterReducer.count, result)
+    useEffect(() => {
+        data && setitems(data.feed.entry)
+    }, [data])
 
     useEffect(() => {
         if (filter && filter.length > 2) {
-            setitems(result.feed.entry.filter(podcast => podcast['im:name'].label.toLowerCase().includes(filter.toLowerCase())))
+            setitemsFiltered(
+                items.filter(podcast =>
+                (podcast['im:name'].label.toLowerCase().includes(filter.toLowerCase()) ||
+                    podcast['im:artist'].label.toLowerCase().includes(filter.toLowerCase()))
+                )
+            )
         } else {
-            setitems(result.feed.entry)
+            setitemsFiltered([])
 
         }
-    }, [filter]);
+    }, [filter, items]);
 
     return <div>
-        <div className='filter'>
-            <span className={`numItems ${filter.length > 2 ? "green" : ""}`}>{items.length}</span>
-            <input type="text" className='filtertext' onChange={(evt) => setFilter(evt.target.value)} />
-        </div>
-        <div className='podcastContainer'>
-            {items.map(podcast => <PodcasItem key={`pod-${podcast.id.attributes['im:id']}`} props={podcast} />)}
-        </div>
+        <NavBar />
+        {items && <>
+            <div className='filter'>
+                <span className={`numItems ${filter.length > 2 ? "green" : ""}`}>
+                    {itemsFiltered.length !== 0 ? itemsFiltered.length : items.length}
+                </span>
+                <input type="text" className='filtertext' onChange={(evt) => setFilter(evt.target.value)} />
+            </div>
+            <div className='podcastContainer'>
+                {filter.length > 2 ? itemsFiltered.map(podcast => <PodcasItem key={`pod-${podcast.id.attributes['im:id']}`} props={podcast} />) :
+                    items.map(podcast => <PodcasItem key={`pod-${podcast.id.attributes['im:id']}`} props={podcast} />)}
+            </div>
+        </>}
     </div >;
 };
 
