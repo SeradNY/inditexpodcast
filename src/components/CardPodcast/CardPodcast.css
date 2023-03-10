@@ -1,4 +1,4 @@
-.podcastitem {
+.CardPodcast {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,30 +7,47 @@
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
     max-width: 300px;
     padding: 10px;
-    margin: 50px 20px;
-    max-height: 120px;
+    margin: 0px 20px;
     min-width: 300px;
+    border-radius: 5px;
+    height: fit-content;
+}
+
+.CardPodcast img {
+    height: 150px;
+    width: 150px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-.podcastitem img {
-    height: 100px;
-    width: 100px;
-    border-radius: 50px;
-    transform: translateY(-50px);
-}
-
-.podcastitem .desc {
+.CardPodcast .desc {
     display: flex;
     flex-direction: column;
+    border-bottom: 1px solid lightgray;
+    width: 100%;
     align-items: center;
-    transform: translateY(-40px);
+    padding-bottom: 20px;
+    margin: 10px 0;
 }
 
-.podcastitem .text {
-    padding-bottom: 10px;
-    text-align: center;
+.CardPodcast .desc:last-child {
+    border-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.CardPodcast .text {
+    width: 100%;
+    text-align: left;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.CardPodcast .text.artist {
+    font-weight: bold;
+}
+
+.CardPodcast .text.descrip {
+    font-weight: bold;
+    padding-bottom: 5px;
 }

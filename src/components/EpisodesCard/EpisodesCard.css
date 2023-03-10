@@ -1,0 +1,28 @@
+.EpisodesCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    padding: 20px;
+    height: fit-content;
+    margin: 0 20px;
+}
+
+.EpisodesCard .tilte {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.EpisodesCard .desc {
+    margin-bottom: 20px;
+    font-style: oblique;
+    border-bottom: 1px solid lightgray;
+    padding: 10px 0;
+}
+
+.EpisodesCard audio {
+    border-radius: 5px;
+    width: 100%;
+}

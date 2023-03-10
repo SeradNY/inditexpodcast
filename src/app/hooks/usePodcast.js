@@ -1,6 +1,6 @@
 import useFetch from './useFetch';
 
 export default function usePodcast() {
-    const { data, loading, error } = useFetch('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json');
+    const { data, loading, error } = useFetch('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json', 'podcasts');
     return { data, error, loading }
 }

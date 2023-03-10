@@ -8,12 +8,12 @@ const PodcastList = () => {
     const [filter, setFilter] = useState([]);
     const [items, setitems] = useState([]);
     const [itemsFiltered, setitemsFiltered] = useState([]);
-    const { data, loading, error } = usePodcast();
-
-    // const { store } = useContext(ReactReduxContext);
-
+    const [loading, setLoading] = useState(true);
+    const { data } = usePodcast();
+    
     useEffect(() => {
         data && setitems(data.feed.entry)
+        data && setLoading(false)
     }, [data])
 
     useEffect(() => {
@@ -26,12 +26,11 @@ const PodcastList = () => {
             )
         } else {
             setitemsFiltered([])
-
         }
     }, [filter, items]);
 
     return <div>
-        <NavBar />
+        <NavBar loading={loading} />
         {items && <>
             <div className='filter'>
                 <span className={`numItems ${filter.length > 2 ? "green" : ""}`}>

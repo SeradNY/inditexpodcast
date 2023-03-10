@@ -5,6 +5,7 @@ import PodcastList from './views/PodcastList/PodcastList';
 import PodcastDetail from './views/PodcastDetail/PodcastDetail';
 import store from './app/store';
 import './index.css';
+import EpisodeDetail from "./views/EpisodeDetail/EpisodeDetail";
 
 export default function Main() {
   return (
@@ -14,6 +15,7 @@ export default function Main() {
           <Route index element={<PodcastList />} />
         </Route>
         <Route path="/podcast/:podcastId" element={<PodcastDetail />} />
+        <Route path="/podcast/:podcastId/episode/:episodeId" element={<EpisodeDetail />} />
       </Routes>
     </BrowserRouter>
   );
